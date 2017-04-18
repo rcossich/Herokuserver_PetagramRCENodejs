@@ -29,10 +29,6 @@ app.get('/', function(request, response) {
 //id_dispositivo,id_usuario_instagram
 var registrarUsuarioURI = "registrar-usuario";
 app.post("/" + registrarUsuarioURI, function(request,response) {
-	response.write(request.body.id_dispositivo);
-	response.write("\n");
-	response.write(request.body.id_usuario_instagram);
-	response.end();
 	var id_dispositivo 	= request.body.id_dispositivo;
 	var id_usuario_instagram 	= request.body.id_usuario_instagram;
 	var db = firebase.database();
