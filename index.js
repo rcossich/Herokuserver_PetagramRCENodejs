@@ -21,8 +21,8 @@ app.get('/', function(request, response) {
 //https://whispering-cliffs-37590.herokuapp.com/registrar-usuario
 //id_dispositivo,id_usuario_instagram
 app.post("/registrar-usuario", function(request,response) {
-	response.send(request.body.id_dispositivo);
-	response.send(request.body.id_usuario_instagram);
+	response.write(request.body.id_dispositivo);
+	response.write(request.body.id_usuario_instagram);
 }
 );
 
