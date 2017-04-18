@@ -44,7 +44,7 @@ app.post("/" + registrarUsuarioURI, function(request,response) {
 
 
 	var path = registro.toString(); 
-	var pathSplit = path.split(registrarUsuarioURI + "/")
+	var pathSplit = path.split(registrarUsuarioURI + "/");
 	var idAutoGenerado = pathSplit[1];
 	var respuesta = generarRespuestaAToken(db, idAutoGenerado);
 	response.setHeader("Content-Type", "application/json");
