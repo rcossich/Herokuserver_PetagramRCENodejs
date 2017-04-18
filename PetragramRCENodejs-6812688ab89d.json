@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "petragramrcenodejs",
+  "private_key_id": "6812688ab89da193a5d09798df6d23e3101df9eb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCfTazlfekLCxkG\nEKHwsj0mw+gHUN74+E9RwPyfudIhkXU6j1uItWRFuXgP5XJUrSk87AXoyoArnz0w\nrwa0EFkBlWDnUTOnD6r6grtjSdC7RWpdfxNu8b0h5Q7+JxeOtmpIvQ59VjvPB05v\nOr2Beq21QgwtN4Kb3FAC4Vg4bBO1F0Plqys1KpXTiFNwfGvlUe1ZBDlWvAdYZfJz\nB2bXTSjsBP5xAbXd3p3Ji1eFf8zeVA+4j6a+adhQbPYRBfNLkKM+WW6hgRc9McKE\nh/2SRN9czYShX5kqgYqTWHhUvhrs4Jsr/dKiLSRooYj3Laxj4epWxQgaFSnnfnmp\nmfMDGJ/dAgMBAAECggEAD9EbiJGu0MziSCrgmVBpJ+8tm4RZDylAXuKlcop1paWW\nmSDgursf4JhgpltmtaeXv5fDonBwt2QRJENMjBZPcAvP2kfCtCSnGkZeqqYKln12\n6R+T42EXIUVn7q4c9auA9AXpaWJlf9G+5OZVKITwuF19bgPj8Ou3+gE7zCZW8pTb\nq8kBWLRUL/ZNbhROWm1/DFSuAQ+W+fnKYk+yKNGWxb12woP4t/Kx/uoGSAffSLLz\nsYlxfwRtCNA08maA/4pCztJTcXabfjoOfhLJQoLufWmP0WknyGEfZUboT8QUhgNJ\nEKN4nqDMfyw3ltpX3uoVBjvTFXqw1APLyS5SS06b9QKBgQDK5m5LayDAzePQs0jV\nbJ5ZKCtXPvubP22eSmAmzpZmYQRWvEp18cffic8HgQ/asJDoorRXpI8TCc1ypowv\n2ucliMk7/CjC1yssNtR+Eryql/56HP2x1fFSJPrASLk63tHPaPu8FlW3K1gDwche\nDFgfgHBnJjduzJlc2l4njh6BOwKBgQDI/myhZ2F9q7nv0fH8u4Kyc6k5/lo/vJBz\neKIJ1uqhDL52NtTJWQzy+6IkbIfkn1+Z8gzCydXj3+4q/XDHGOEbd+ig+EbI5b+V\n3Zqo9ARUs38CiB75kGgZplaTKCIia++YL+LrOf5Aqm8P7TSSZNZ5CEMHve/Q85ta\nidRid5PRxwKBgQCgq9LhZCbepuvlY2OkpkvKfFW91AE4UgUDGRCFCojs75yY9qfc\nOCc3rBBGd/xPCAzoO5el44js4ZFQXfSbHLR385avKqI4kFz+uTiR0VKXoJ8Cohx/\ni9R6YRAz3iLYLIRmw1K9Ac7Eqs0axIRffVT3NSVNeWTiF6DGd6Ghnxgm6wKBgQCx\nQZgB3A9hakInmuqjbaa8xD349DUZQq3N+BRHQy9W6stJq9+K1qsR2xNKtiA+YsNI\nG+xfGOs19PWxGiQMogdcVypkU7DxWZTVkULlP5ZWMJqRXASdKVp1THnLe7hmzPPX\nLlwcAOAWnXgm/pW/iYiP4tZijIJjr4NRnH4efMBzXwKBgDwz3c+4jOIhOEOb19F9\nyxBtNQMdmmocs15zTPX/a0ui+IrQ9gqTWL/RkpagV/SJlvWa+uBzdr8f1MirfmtV\nAJIbuxuD96Yt/a4eGxrWXvOJqbTyDBTgVxJ8dOheap6ReF3cGxfjGmKJ0nCT3z+O\n1dHQfgkVYc2L+U3UgfUqroSz\n-----END PRIVATE KEY-----\n",
+  "client_email": "petagramserver@petragramrcenodejs.iam.gserviceaccount.com",
+  "client_id": "101419309090740179143",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/petagramserver%40petragramrcenodejs.iam.gserviceaccount.com"
+}
