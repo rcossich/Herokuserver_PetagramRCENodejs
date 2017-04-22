@@ -15,7 +15,7 @@ firebase.initializeApp({
 });
 
 
-var FCM = require('fcm-push');  //habilitar el FireBase Cloud Messagging push notification.
+//var FCM = require('fcm-push');  //habilitar el FireBase Cloud Messagging push notification.
 
 app.use(express.static(__dirname + '/public'));
 
