@@ -98,7 +98,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var busqueda = db.ref(registrarUsuarioURI);
 	var variable_busqueda = "id_usuario_instagram";
 	conjunto1 = busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram);
-	conjunto1.on("val", function(snapshot){
+	conjunto1.on("value", function(snapshot){
 		forEach(function (dato) {
 		   console.log(data.key+" del usuario "+data.val().id_usuario_instagram+" con dispositivo "+data.val().id_dispositivo);	
 		});
