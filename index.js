@@ -93,13 +93,21 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		id_media_instagram : id_media_instagram,
 		id_sender_instagram : id_sender_instagram
 	});	
+<<<<<<< HEAD
 	console.log("Vamos a ordenar por "+variable_busqueda+", y a filtrar "+id_owner_instagram);
+=======
+
+>>>>>>> 5c4ef451f3d7c11d5745eb2485dc01c8cd91d27d
 	//verificando si existe registrado como usuario el id del owner de la media.
 	var busqueda = db.ref(registrarUsuarioURI);
 	var variable_busqueda = "id_usuario_instagram";
 	conjunto1 = busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram);
+<<<<<<< HEAD
 	console.log("Se asigno a conjunto1 ordenar por hijo y filtrar"); 
 	conjunto1.on("value", function(snapshot){
+=======
+	conjunto1.on("val", function(snapshot){
+>>>>>>> 5c4ef451f3d7c11d5745eb2485dc01c8cd91d27d
 		forEach(function (dato) {
 		   console.log(data.key+" del usuario "+data.val().id_usuario_instagram+" con dispositivo "+data.val().id_dispositivo);	
 		});
