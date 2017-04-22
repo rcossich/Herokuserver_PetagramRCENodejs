@@ -95,15 +95,22 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});	
 	
 	//verificando si existe registrado como usuario el id del owner de la media.
-	var busqueda = db.ref(registrarUsuarioURI);
+	var busqueda = db.ref(registrarUsuarioURI); //quiero el nodo de registrar-usuario
 	var variable_busqueda = "id_usuario_instagram";
-	console.log("Vamos a ordenar por "+variable_busqueda+", y a filtrar "+id_owner_instagram);
-	conjunto1 = busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram);
-	console.log("Se asigno a conjunto1 ordenar por hijo y filtrar"); 
-	conjunto1.on("child_added", function(snapshot){
-		console.log("Registros filtrados "+snapshot.numChildren());
+	var llaves_recorridas = 0;
+	var usuarios_recorridos = 0;
+	conjunto1 = busqueda.orderByKey();
+	console.log("Se asigno recorrer ordenado por llave"); 
+	conjunto1.on("value", function(snapshot){
+		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
-			console.log(registro.key+" con "+registro.val().id_usuario_instagram+" dispositivo "+registro.val().id_dispositivo);
+			console.log("Estoy viendo el registro "+ snapshot.key);
+			llaves_recorridas = llaves_recorridas + 1;
+			var usuario_instagram = registro.child(variable_busqueda).val();
+			console.log("Recupero para "+variable_busqueda+" el valor "+usuario_instagram);
+			var dispositivo = registro.child("id_dispositivo").val();
+			console.log("Recupero el Id de dispositivo "+dispositivo);
+			usuarios_recorridos = usuarios_recorridos + 1;
 		})
 	}, function(errorObject){
 		console.log("Hubo un error: "+errorObject.code);
