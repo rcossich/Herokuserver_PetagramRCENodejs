@@ -101,7 +101,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	conjunto1 = busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram);
 	console.log("Se asigno a conjunto1 ordenar por hijo y filtrar"); 
 	conjunto1.on("value", function(snapshot){
-		snapshot.forEach(funtion(registro) {
+		snapshot.forEach(function(registro) {
 			console.log(registro.key+" con "+registro.val().id_usuario_instagram+" dispositivo "+registro.val().id_dispositivo);
 		})
 	}, function(errorObject){
