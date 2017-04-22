@@ -84,9 +84,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var existia_like = false;
 	var mensaje = null;
 
-//verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram)
-//sino hay codigo es porque no se decidio implementar.
-	
+//verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
 //insertando en FireBase el Like.
 	var db = firebase.database();
 	var registro = db.ref(registrarlikeURI).push();
@@ -94,17 +92,20 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		id_owner_instagram : id_owner_instagram,
 		id_media_instagram : id_media_instagram,
 		id_sender_instagram : id_sender_instagram
-
 	});	
 
 	//verificando si existe registrado como usuario el id del owner de la media.
 	var busqueda = db.ref(registrarUsuarioURI);
 	var variable_busqueda = "id_usuario_instagram";
-	busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram).on("value"), function(snapshot){
-		console.log(snapshot.key + " del id usuario"+ snpashot.val().id_usuario_instagram+ " con dispositivo "+snapshot.val().id_dispositivo);
+	conjunto1 = busqueda.orderByChild(variable_busqueda).equalTo(id_owner_instagram);
+	conjunto1.on("val", function(snapshot){
+		forEach(function (dato) {
+		   console.log(data.key+" del usuario "+data.val().id_usuario_instagram+" con dispositivo "+data.val().id_dispositivo);	
+		});
+		//console.log(snapshot.key + " del id usuario"+ snpashot.val().id_usuario_instagram+ " con dispositivo "+snapshot.val().id_dispositivo);
 	}, function(errorObject){
 		console.log("Hubo un error: "+errorObject.code);
-	}
+	});
 
 	//var path = registro.toString(); 
 	//var pathSplit = path.split(registrarUsuarioURI + "/");
