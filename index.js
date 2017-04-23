@@ -88,7 +88,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 //verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
 //insertando en FireBase el Like.
 	var db = firebase.database();
-	console.log("Vamos a tener acceso a"+db);
+	console.log("Vamos a tener acceso a"+db.ref());
 	var registro = db.ref(registrarlikeURI).push();
 	llave = registro.key;
 	registro.set({
@@ -102,19 +102,15 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var variable_busqueda = "id_usuario_instagram";
 	var llaves_recorridas = 0;
 	var usuarios_recorridos = 0;
-	conjunto1 = busqueda.orderByKey();
-	console.log("Se asigno recorrer ordenado por llave"); 
-
-
-
+	
 	// Attach an asynchronous callback to read the data at our posts reference
-	console.log("Probando un sencillo on child_added recorrido a "+registrarUsuarioURI);
-	busqueda.on("child_added", function(snapshot) {
+	console.log("Probando un sencillo on once recorrido a "+registrarUsuarioURI);
+	busqueda.on("once", function(snapshot) {
   		console.log(snapshot.val());
 	}, function (errorObject) {
   		console.log("The read failed: " + errorObject.code);
 	});
-	console.log("Final del recorrido con child_added.");
+	console.log("Final del recorrido con once.");
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
