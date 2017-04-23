@@ -98,7 +98,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});	
 	console.log("Se empujo la llave "+llave);
 	//verificando si existe registrado como usuario el id del owner de la media.*/
-	var busqueda = db.ref(registrarUsuarioURI); //quiero el nodo de registrar-usuario
+	var busqueda = db.ref("/"+registrarUsuarioURI); //quiero el nodo de registrar-usuario
 	var variable_busqueda = "id_usuario_instagram";
 	var llaves_recorridas = 0;
 	var usuarios_recorridos = 0;
