@@ -165,7 +165,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});
 	*/
 
-	ref.once("value", function(snapshot) {
+	ref.once("value").then(function(snapshot) {
   	var data = snapshot.val();   //Data is in JSON format.
   	console.log(data);
 	});
