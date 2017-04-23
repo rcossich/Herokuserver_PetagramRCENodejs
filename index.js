@@ -83,17 +83,19 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var id_sender_instagram 	= request.body.id_sender_instagram;
 	var existia_like = false;
 	var mensaje = null;
+	var llave = null;
 
 //verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
 //insertando en FireBase el Like.
 	var db = firebase.database();
 	var registro = db.ref(registrarlikeURI).push();
+	llave = registro.key;
 	registro.set({
 		id_owner_instagram : id_owner_instagram,
 		id_media_instagram : id_media_instagram,
 		id_sender_instagram : id_sender_instagram
 	});	
-	
+	console.log("Se empujo la llave "+llave);
 	//verificando si existe registrado como usuario el id del owner de la media.
 	var busqueda = db.ref(registrarUsuarioURI); //quiero el nodo de registrar-usuario
 	var variable_busqueda = "id_usuario_instagram";
@@ -101,7 +103,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var usuarios_recorridos = 0;
 	conjunto1 = busqueda.orderByKey();
 	console.log("Se asigno recorrer ordenado por llave"); 
-	conjunto1.on("value", function(snapshot){
+	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
 			console.log("Estoy viendo el registro "+ snapshot.key);
@@ -114,7 +116,10 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		})
 	}, function(errorObject){
 		console.log("Hubo un error: "+errorObject.code);
-	});
+	});*/
+
+	var respuesta = "Se inserto el comando"+llave;
+	response.send(respuesta);
 }
 );
 
