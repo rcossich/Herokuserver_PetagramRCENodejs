@@ -103,6 +103,16 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var usuarios_recorridos = 0;
 	conjunto1 = busqueda.orderByKey();
 	console.log("Se asigno recorrer ordenado por llave"); 
+
+
+
+	// Attach an asynchronous callback to read the data at our posts reference
+	console.log("Probando un sencillo recorrido a"+registrarUsuarioURI);
+	busqueda.on("value", function(snapshot) {
+  		console.log(snapshot.val());
+	}, function (errorObject) {
+  		console.log("The read failed: " + errorObject.code);
+	});
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
@@ -118,7 +128,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		console.log("Hubo un error: "+errorObject.code);
 	});*/
 
-	var respuesta = "Se inserto el comando"+llave;
+	var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
 	response.send(respuesta);
 }
 );
