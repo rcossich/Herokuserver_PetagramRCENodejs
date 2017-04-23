@@ -165,7 +165,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});
 	*/
 	console.log("Antes del ref.once('value').then");
-	ref.once('value').then(function(snapshot) {
+	ref.orderByKey().once('value',function(snapshot) {
   	var data = snapshot.val();   //Data is in JSON format.
   	console.log(data);
 	});
