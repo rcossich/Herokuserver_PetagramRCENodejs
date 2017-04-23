@@ -100,7 +100,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	//verificando si existe registrado como usuario el id del owner de la media.*/
 	//var busqueda = db.ref("/"+registrarUsuarioURI); //quiero el nodo de registrar-usuario
 	
-
+	/*
 	var db2 = firebase.database();
 	var busqueda = db2.ref("/user_data");
 	var variable_busqueda = "id_usuario_instagram";
@@ -114,7 +114,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
   		console.log(data);
 	});
 	console.log("Final del recorrido con once-value y sin funcion de error.");
-
+	*/
 
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
@@ -132,15 +132,15 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});*/
 
 	
-	var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
-	response.send(respuesta);
+	//var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
+	//response.send(respuesta);
 
 
-	/*    **********************  este codigo funciono!!! :(
+	/*    **********************  este codigo funciono!!! :( */
 	var db = firebase.database();
 	var ref = db.ref("/user_data");  //Set the current directory you are working in
 
-	
+	/*
 	ref.set([
 	{
     	id:20,
@@ -163,13 +163,13 @@ app.post("/" + registrarlikeURI, function(request,response) {
     	email:"jane@doe.com",
    	 website:"https://jane.foo.bar"
 	});
-
+	*/
 
 	ref.once("value", function(snapshot) {
   	var data = snapshot.val();   //Data is in JSON format.
   	console.log(data);
 	});
-	*      ******** termina el codigo de prueba. */
+	/*      ******** termina el codigo de prueba. */
 }
 );
 
