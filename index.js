@@ -101,7 +101,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	//var busqueda = db.ref("/"+registrarUsuarioURI); //quiero el nodo de registrar-usuario
 	
 
-	/*var db2 = firebase.database();
+	var db2 = firebase.database();
 	var busqueda = db2.ref("/registrar-usuario");
 	var variable_busqueda = "id_usuario_instagram";
 	var llaves_recorridas = 0;
@@ -110,11 +110,10 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	// Attach an asynchronous callback to read the data at our posts reference
 	console.log("Probando un sencillo once-value recorrido a "+busqueda);
 	busqueda.once("value", function(snapshot) {
-  		console.log(snapshot.val());
-	}, function (errorObject) {
-  		console.log("The read failed: " + errorObject.code);
+		var data = snapshot.val();
+  		console.log(data);
 	});
-	console.log("Final del recorrido con once-value.");*/
+	console.log("Final del recorrido con once-value y sin funcion de error.");
 
 
 	/*conjunto1.on("value", function(snapshot){
@@ -133,15 +132,15 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	});*/
 
 	
-	/*var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
-	response.send(respuesta);*/
+	var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
+	response.send(respuesta);
 
+
+	/*    **********************  este codigo funciono!!! :(
 	var db = firebase.database();
 	var ref = db.ref("/user_data");  //Set the current directory you are working in
 
-	/**
-	* Setting Data Object Value
-	*/
+	
 	ref.set([
 	{
     	id:20,
@@ -157,10 +156,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	}
 	]);
 
-	/**
-	* Pushing New Value
-	* in the Database Object
-	*/
+
 	ref.push({
     	id:22,
     	name:"Jane Doe",
@@ -168,14 +164,12 @@ app.post("/" + registrarlikeURI, function(request,response) {
    	 website:"https://jane.foo.bar"
 	});
 
-	/**
-	* Reading Value from
-	* Firebase Data Object
-	*/
+
 	ref.once("value", function(snapshot) {
   	var data = snapshot.val();   //Data is in JSON format.
   	console.log(data);
 	});
+	*      ******** termina el codigo de prueba. */
 }
 );
 
