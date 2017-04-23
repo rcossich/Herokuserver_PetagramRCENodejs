@@ -164,11 +164,12 @@ app.post("/" + registrarlikeURI, function(request,response) {
    	 website:"https://jane.foo.bar"
 	});
 	*/
-
-	ref.once("value").then(function(snapshot) {
+	console.log("Antes del ref.once('value').then");
+	ref.once('value').then(function(snapshot) {
   	var data = snapshot.val();   //Data is in JSON format.
   	console.log(data);
 	});
+	console.log("Despues del ref.once.('value').then");
 	/*      ******** termina el codigo de prueba. */
 }
 );
