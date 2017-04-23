@@ -102,7 +102,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	
 
 	var db2 = firebase.database();
-	var busqueda = db2.ref("/registrar-usuario");
+	var busqueda = db2.ref("/user_data");
 	var variable_busqueda = "id_usuario_instagram";
 	var llaves_recorridas = 0;
 	var usuarios_recorridos = 0;
