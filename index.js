@@ -88,6 +88,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 //verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
 //insertando en FireBase el Like.
 	var db = firebase.database();
+	console.log("Vamos a tener acceso a"+db);
 	var registro = db.ref(registrarlikeURI).push();
 	llave = registro.key;
 	registro.set({
