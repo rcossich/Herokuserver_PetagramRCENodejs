@@ -107,12 +107,13 @@ app.post("/" + registrarlikeURI, function(request,response) {
 
 
 	// Attach an asynchronous callback to read the data at our posts reference
-	console.log("Probando un sencillo recorrido a"+registrarUsuarioURI);
-	busqueda.on("value", function(snapshot) {
+	console.log("Probando un sencillo on child_added recorrido a "+registrarUsuarioURI);
+	busqueda.on("child_added", function(snapshot) {
   		console.log(snapshot.val());
 	}, function (errorObject) {
   		console.log("The read failed: " + errorObject.code);
 	});
+	console.log("Final del recorrido con child_added.");
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
