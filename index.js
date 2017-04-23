@@ -87,8 +87,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
 
 //verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
 //insertando en FireBase el Like.
-	var db = firebase.database();
-	/*console.log("Vamos a tener acceso a "+db.ref());
+	/*var db = firebase.database();
+	console.log("Vamos a tener acceso a "+db.ref());
 	var registro = db.ref(registrarlikeURI).push();
 	llave = registro.key;
 	registro.set({
@@ -99,7 +99,9 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	console.log("Se empujo la llave "+llave);
 	//verificando si existe registrado como usuario el id del owner de la media.*/
 	//var busqueda = db.ref("/"+registrarUsuarioURI); //quiero el nodo de registrar-usuario
-	var db2 = firebase.database();
+	
+
+	/*var db2 = firebase.database();
 	var busqueda = db2.ref("/registrar-usuario");
 	var variable_busqueda = "id_usuario_instagram";
 	var llaves_recorridas = 0;
@@ -112,7 +114,9 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	}, function (errorObject) {
   		console.log("The read failed: " + errorObject.code);
 	});
-	console.log("Final del recorrido con once-value.");
+	console.log("Final del recorrido con once-value.");*/
+
+
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
@@ -128,8 +132,50 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		console.log("Hubo un error: "+errorObject.code);
 	});*/
 
-	var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
-	response.send(respuesta);
+	
+	/*var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
+	response.send(respuesta);*/
+
+	var db = firebase.database();
+	var ref = db.ref("/user_data");  //Set the current directory you are working in
+
+	/**
+	* Setting Data Object Value
+	*/
+	ref.set([
+	{
+    	id:20,
+    	name:"Jane Doe",
+    	email:"jane@doe.com",
+    	website:"https://jane.foo.bar"
+	},
+	{
+    	id:21,
+    	name:"John doe",
+   	 	email:"john@doe.com",
+    	website:"https://foo.bar"
+	}
+	]);
+
+	/**
+	* Pushing New Value
+	* in the Database Object
+	*/
+	ref.push({
+    	id:22,
+    	name:"Jane Doe",
+    	email:"jane@doe.com",
+   	 website:"https://jane.foo.bar"
+	});
+
+	/**
+	* Reading Value from
+	* Firebase Data Object
+	*/
+	ref.once("value", function(snapshot) {
+  	var data = snapshot.val();   //Data is in JSON format.
+  	console.log(data);
+	});
 }
 );
 
