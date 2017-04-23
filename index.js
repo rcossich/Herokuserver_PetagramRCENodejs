@@ -104,13 +104,13 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var usuarios_recorridos = 0;
 	
 	// Attach an asynchronous callback to read the data at our posts reference
-	console.log("Probando un sencillo on once recorrido a "+registrarUsuarioURI);
-	busqueda.on("once", function(snapshot) {
+	console.log("Probando un sencillo once-value recorrido a "+registrarUsuarioURI);
+	busqueda.once("value", function(snapshot) {
   		console.log(snapshot.val());
 	}, function (errorObject) {
   		console.log("The read failed: " + errorObject.code);
 	});
-	console.log("Final del recorrido con once.");
+	console.log("Final del recorrido con once-value.");
 	/*conjunto1.on("value", function(snapshot){
 		console.log("Registros primer bucle "+snapshot.numChildren());
 		snapshot.forEach(function(registro) {
