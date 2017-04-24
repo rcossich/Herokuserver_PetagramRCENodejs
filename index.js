@@ -106,6 +106,23 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		id_dispositivo      : id_dispositivo
 	});	
 	console.log("Se empujo la llave "+llave);
+	//enviando respuesta
+	var respuesta = {};
+	var usuario = "";
+	var ref = db.ref(registrarlikeURI);
+	ref.on("child_added", function(snapshot, prevChildKey) {
+		usuario = snapshot.val();
+		respuesta = {
+			id: llave,
+			id_dispositivo : usuario.id_dispositivo,
+			id_owner_instagram : usuario.id_owner_instagram,
+			id_media_instagram : usuario.id_media_instagram,
+			id_sender_instagram : id_sender_instagram
+		};
+
+	}); 
+	response.setHeader("Content-Type", "application/json");
+	response.send(JSON.stringify(respuesta));
 	}
 );
 
