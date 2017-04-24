@@ -92,7 +92,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var id_owner_instagram  	= request.body.id_owner_instagram;
 	var id_media_instagram  	= request.body.id_media_instagram;
 	var id_sender_instagram 	= request.body.id_sender_instagram;
-	var id_dispositivo          = request.boy.id_dispositivo;
+	var id_dispositivo          = request.body.id_dispositivo;
 
 	//insertando en FireBase el Like.
 	var db = firebase.database();
