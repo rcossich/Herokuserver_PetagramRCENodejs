@@ -74,104 +74,39 @@ function generarRespuestaAToken(db, idAutoGenerado) {
 // el id media es el identificador de isntagram para la media a la que se le dio like en el TimeLine.
 // el id sender es el id de instagram definido como principal en la aplicacion.
 // este id owner debe estar registrado en registrar-usuario para poder enviar notificacion.
+// La aplicacion Android en el POST debe enviar el valor de id_dispositivo que corresponde a
+//id_owner_instagram, si viene nulo no envia la notificacion.
 //https://whispering-cliffs-37590.herokuapp.com/registrar-like
-//id_owner_instagram, id_media_instagram,id_sender_instagram
+//id_owner_instagram, id_media_instagram,id_sender_instagram, id_dispositivo
+
+//IMPORTANTE: se queria verificar si en el nodeo de firebase registrar-usuario existia
+//un nodo donde id_usuario_instagram fuera giaul que id_owner_instagram para recuperar
+//el id_dispositivo al cual debemos enviar la notificacion.
+//nunca se logro hacer correr el codigo, por lo que se decidio que en la aplicacion de Android
+//se va a buscar dicho id_dispositivo con un GET directo al nodo registrar-usuario.json
+//eso explica que se agregue al POST el id_dispositivo (solamente se permite uno)
+//y con esto queda resuleto el envio de notificacions desde Heroku.
+
 var registrarlikeURI = "registrar-like";
 app.post("/" + registrarlikeURI, function(request,response) {
 	var id_owner_instagram  	= request.body.id_owner_instagram;
 	var id_media_instagram  	= request.body.id_media_instagram;
 	var id_sender_instagram 	= request.body.id_sender_instagram;
-	var existia_like = false;
-	var mensaje = null;
-	var llave = null;
+	var id_dispositivo          = request.boy.id_dispositivo;
 
-//verificar si existe otro like con (id_owner_instagram,id_media_instagram,id_sender_instagram), sino hay codigo es porque no se decidio implementar.
-//insertando en FireBase el Like.
-	/*var db = firebase.database();
+	//insertando en FireBase el Like.
+	var db = firebase.database();
 	console.log("Vamos a tener acceso a "+db.ref());
 	var registro = db.ref(registrarlikeURI).push();
 	llave = registro.key;
 	registro.set({
-		id_owner_instagram : id_owner_instagram,
-		id_media_instagram : id_media_instagram,
-		id_sender_instagram : id_sender_instagram
+		id_owner_instagram  : id_owner_instagram,
+		id_media_instagram  : id_media_instagram,
+		id_sender_instagram : id_sender_instagram,
+		id_dispositivo      : id_dispositivo
 	});	
 	console.log("Se empujo la llave "+llave);
-	//verificando si existe registrado como usuario el id del owner de la media.*/
-	//var busqueda = db.ref("/"+registrarUsuarioURI); //quiero el nodo de registrar-usuario
-	
-	/*
-	var db2 = firebase.database();
-	var busqueda = db2.ref("/user_data");
-	var variable_busqueda = "id_usuario_instagram";
-	var llaves_recorridas = 0;
-	var usuarios_recorridos = 0;
-	
-	// Attach an asynchronous callback to read the data at our posts reference
-	console.log("Probando un sencillo once-value recorrido a "+busqueda);
-	busqueda.once("value", function(snapshot) {
-		var data = snapshot.val();
-  		console.log(data);
-	});
-	console.log("Final del recorrido con once-value y sin funcion de error.");
-	*/
-
-	/*conjunto1.on("value", function(snapshot){
-		console.log("Registros primer bucle "+snapshot.numChildren());
-		snapshot.forEach(function(registro) {
-			console.log("Estoy viendo el registro "+ snapshot.key);
-			llaves_recorridas = llaves_recorridas + 1;
-			var usuario_instagram = registro.child(variable_busqueda).val();
-			console.log("Recupero para "+variable_busqueda+" el valor "+usuario_instagram);
-			var dispositivo = registro.child("id_dispositivo").val();
-			console.log("Recupero el Id de dispositivo "+dispositivo);
-			usuarios_recorridos = usuarios_recorridos + 1;
-		})
-	}, function(errorObject){
-		console.log("Hubo un error: "+errorObject.code);
-	});*/
-
-	
-	//var respuesta = "Se inserto el comando"+llave+", y se trato de recorrer "+registrarUsuarioURI;
-	//response.send(respuesta);
-
-
-	/*    **********************  este codigo funciono!!! :( */
-	var db = firebase.database();
-	var ref = db.ref("/user_data");  //Set the current directory you are working in
-
-	/*
-	ref.set([
-	{
-    	id:20,
-    	name:"Jane Doe",
-    	email:"jane@doe.com",
-    	website:"https://jane.foo.bar"
-	},
-	{
-    	id:21,
-    	name:"John doe",
-   	 	email:"john@doe.com",
-    	website:"https://foo.bar"
 	}
-	]);
-
-
-	ref.push({
-    	id:22,
-    	name:"Jane Doe",
-    	email:"jane@doe.com",
-   	 website:"https://jane.foo.bar"
-	});
-	*/
-	console.log("Antes del ref.once('value').then");
-	ref.orderByKey().once('value',function(snapshot) {
-  	var data = snapshot.val();   //Data is in JSON format.
-  	console.log(data);
-	});
-	console.log("Despues del ref.once.('value').then");
-	/*      ******** termina el codigo de prueba. */
-}
 );
 
 
