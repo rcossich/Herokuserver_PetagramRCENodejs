@@ -135,14 +135,22 @@ app.post("/" + registrarlikeURI, function(request,response) {
 
 	//tratando de obtener registrar-usuario con un GET finalizado en .json desde aca.
 	var URL_usuarios = "https://petragramrcenodejs.firebaseio.com/registrar-usuario.json";
-	const request = require('request');
-    request(URL_usuarios, (error, response, body)=> {
-    if (!error && response.statusCode === 200) {
-    	const fbResponse = JSON.parse(body)
-    	console.log("Got a response: ", fbResponse.picture)
-  	} else {
-    	console.log("Got an error: ", error, ", status code: ", response.statusCode)
-  	}
+	'use strict';
+	var registrados = require('request');
+
+	registrados.get({
+    	url: url,
+    	json: true,
+    	headers: {'User-Agent': 'request'}
+  	}, (err, res, data) => {
+    	if (err) {
+      	console.log('Error:', err);
+    	} else if (res.statusCode !== 200) {
+      	console.log('Status:', res.statusCode);
+    	} else {
+      	// data is already parsed as JSON:
+      	console.log(data.html_url);
+    	}
 	});
 
 
