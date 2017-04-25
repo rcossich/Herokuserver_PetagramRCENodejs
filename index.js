@@ -20,7 +20,7 @@ var firebase = require("firebase-admin");
 var serviceAccount = require("./PetragramRCENodejs-6812688ab89d.json");
 
 firebase.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: firebase.credential.cert(serviceAccount),
   databaseURL: "https://petragramrcenodejs.firebaseio.com"
 });
 
