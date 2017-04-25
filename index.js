@@ -113,10 +113,10 @@ app.post("/" + registrarlikeURI, function(request,response) {
 			/registrar-usuario
 
             ************************************************ */
-
+    /*
     var db1 = firebase.database();
     // https://petragramrcenodejs.firebaseio.com/registrar-usuario/-KiSOYrUXaAZtC41H9Hu
-    var arbol = db1.ref("registrar-usuario");
+    var arbol = db1.ref("/registrar-usuario");
     var id_dispositivo = null;
     console.log("previo a tratar de recuperar id de dispositivo");
     //arbol.orderByChild('id_usuario_instagram').on(
@@ -126,7 +126,12 @@ app.post("/" + registrarlikeURI, function(request,response) {
     		console.log("Entrando a"+snapshot.key);
     	});
     console.log("posterior a tratar de recuperar id de dispositivo");
+	*/
 
+	var ref = firebase.app().database().ref();
+	ref.once(‘value’).then(function (snap) {
+		console.log(‘snap.val()’, snap.val());
+	});
 
 	//insertando en FireBase el Like.
 	var db = firebase.database();
