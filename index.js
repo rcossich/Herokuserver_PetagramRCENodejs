@@ -150,6 +150,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
     	} else {
       	// data is already parsed as JSON:
       	console.log(data.html_url);
+      	console.log("dentro de sin error ni codigo != 200");
     	}
     	console.log("registrados.");
 	});
