@@ -119,14 +119,14 @@ app.post("/" + registrarlikeURI, function(request,response) {
     var arbol_usuarios = raiz.child(registrarUsuarioURI);
     console.log("El nodo de:"+arbol_usuarios);
     // https://petragramrcenodejs.firebaseio.com/registrar-usuario/-KiSOYrUXaAZtC41H9Hu
-    var arbol = arbol_usuarios.ref();
-    console.log("El nodo de:"+arbol);
+    //var arbol = arbol_usuarios.ref();
+    //console.log("El nodo de:"+arbol);
     //var id_dispositivo = null;
     console.log("previo a tratar de recuperar id de dispositivo");
     //arbol.orderByChild('id_usuario_instagram').on(
-    arbol.orderByKey().on(    	
+    arbol_usuarios.orderByKey().on(    	
     	"child_added",function(snapshot){
-    		forEach(snapshot)
+    		//forEach(snapshot)
     		console.log("Adentro");
     		console.log("Entrando a"+snapshot.key);
     	});
