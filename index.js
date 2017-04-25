@@ -135,7 +135,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 
 	//tratando de obtener registrar-usuario con un GET finalizado en .json desde aca.
 	var URL_usuarios = "https://petragramrcenodejs.firebaseio.com/registrar-usuario.json";
-	'use strict';
+	//'use strict';
 	var registrados = require('request');
 
 	registrados.get({
@@ -151,6 +151,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
       	// data is already parsed as JSON:
       	console.log(data.html_url);
     	}
+    	console.log("registrados.");
 	});
 
 
