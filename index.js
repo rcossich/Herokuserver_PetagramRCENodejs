@@ -85,7 +85,10 @@ function generarRespuestaAToken(db, idAutoGenerado) {
 //nunca se logro hacer correr el codigo, por lo que se decidio que en la aplicacion de Android
 //se va a buscar dicho id_dispositivo con un GET directo al nodo registrar-usuario.json
 //eso explica que se agregue al POST el id_dispositivo (solamente se permite uno)
-//y con esto queda resuleto el envio de notificacions desde Heroku.
+//y con esto queda resuelto el envio de notificacions desde Heroku.
+
+
+
 
 var registrarlikeURI = "registrar-like";
 app.post("/" + registrarlikeURI, function(request,response) {
@@ -93,6 +96,27 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var id_media_instagram  	= request.body.id_media_instagram;
 	var id_sender_instagram 	= request.body.id_sender_instagram;
 	var id_dispositivo          = request.body.id_dispositivo;
+
+	/*      *************************************************
+			ACA VAMOS A PROBAR DE NUEVO OBTENER SI ESTA REGISTRADO
+			ALGUN DISPOSITIVO DEL id_owner_instagran en el nodo
+			/registrar-usuario
+
+            ************************************************ */
+
+    var db1 = firebase.database();
+    var arbol = db1.ref(registrarUsuarioURI);
+    var id_dispositivo = null;
+    console.log("previo a tratar de recuperar id de dispositivo");
+    arbol1.orderByChild('id_usuario_instagram').equalTo(id_owner_instagram).on(
+    	"child_added",function(snapshot){
+    		if (id_dispositivo===null) {
+    		id_dispositivo = snapshot.id_dispositivo;    			
+    		console.log("Hayamos el id_dispositivo: "+id_dispositivo);
+    		}
+    	});
+    console.log("posterior a tratar de recuperar id de dispositivo");
+
 
 	//insertando en FireBase el Like.
 	var db = firebase.database();
@@ -114,7 +138,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		usuario = snapshot.val();
 		respuesta = {
 			id: llave,
-			id_dispositivo : usuario.id_dispositivo,
+			id_dispositivo : id_dispositivo,
 			id_owner_instagram : usuario.id_owner_instagram,
 			id_media_instagram : usuario.id_media_instagram,
 			id_sender_instagram : id_sender_instagram
