@@ -144,15 +144,17 @@ app.post("/" + registrarlikeURI, function(request,response) {
     	headers: {'User-Agent': 'request'}
   	}, (err, res, data) => {
     	if (err) {
-      	console.log('Error:', err);
+      		console.log('Error:', err);
     	} else if (res.statusCode !== 200) {
-      	console.log('Status:', res.statusCode);
+      		console.log('Status:', res.statusCode);
     	} else {
-      	// data is already parsed as JSON:
-      	console.log("Response: ",res);
-      	console.log("Body: ",data);
-      	console.log(data.html_url);
-      	console.log("dentro de sin error ni codigo != 200");
+      		// data is already parsed as JSON:
+    		console.log("dentro de sin error ni codigo != 200");
+      		console.log("Body: ",data); //aca venia el Json
+      		for (var dato_actual in data) {
+      			console.log(data[dato_actual]["id_dispositivo"]);
+      			console.log(data[dato_actual]["id_usuario_instagram"]);
+      		}
     	}
     	console.log("registrados.");
 	});
