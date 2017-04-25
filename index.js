@@ -137,6 +137,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var db = firebase.database();
 	console.log("Vamos a tener acceso a "+db.ref());
 	var registro = db.ref(registrarlikeURI).push();
+	console.log("A obtener la llave");
 	llave = registro.key;
 	console.log("Antes del set de registrar-like");
 	registro.set({
@@ -149,8 +150,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	//enviando respuesta
 	var respuesta = {};
 	var usuario = "";
-	var ref = db.ref(registrarlikeURI);
-	ref.on("child_added", function(snapshot, prevChildKey) {
+	var ref1 = db.ref(registrarlikeURI);
+	ref1.on("child_added", function(snapshot, prevChildKey) {
 		usuario = snapshot.val();
 		respuesta = {
 			id: llave,
