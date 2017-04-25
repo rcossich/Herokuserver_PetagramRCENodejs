@@ -113,25 +113,27 @@ app.post("/" + registrarlikeURI, function(request,response) {
 			/registrar-usuario
 
             ************************************************ */
-    /*
-    var db1 = firebase.database();
+    
+    var raiz = firebase.database().ref();
+    console.log("Raiz de la base de datos: "+raiz);
+    var arbol_usuarios = raiz.child(registrarUsuarioURI);
+    console.log("El nodo de:"+arbol_usuarios);
     // https://petragramrcenodejs.firebaseio.com/registrar-usuario/-KiSOYrUXaAZtC41H9Hu
-    var arbol = db1.ref("/registrar-usuario");
-    var id_dispositivo = null;
+    var arbol = arbol_usuarios.ref();
+    console.log("El nodo de:"+arbol);
+    //var id_dispositivo = null;
     console.log("previo a tratar de recuperar id de dispositivo");
     //arbol.orderByChild('id_usuario_instagram').on(
-    arbol.once(    	
+    arbol.orderByKey().on(    	
     	"child_added",function(snapshot){
+    		forEach(snapshot)
     		console.log("Adentro");
     		console.log("Entrando a"+snapshot.key);
     	});
     console.log("posterior a tratar de recuperar id de dispositivo");
-	*/
+	
 
-	var ref = firebase.app().database().ref(registrarUsuarioURI);
-	ref.once("value").then(function (snap) {
-		console.log("snap.val(): ", snap.val());
-	});
+
 
 	//insertando en FireBase el Like.
 	var db = firebase.database();
