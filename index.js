@@ -128,7 +128,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
     console.log("posterior a tratar de recuperar id de dispositivo");
 	*/
 
-	var ref = firebase.app().database().ref();
+	var ref = firebase.app().database().ref(registrarUsuarioURI);
 	ref.once("value").then(function (snap) {
 		console.log("snap.val(): ", snap.val());
 	});
