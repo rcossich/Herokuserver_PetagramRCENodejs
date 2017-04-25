@@ -7,10 +7,20 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
 var firebase = require("firebase");
 
 firebase.initializeApp({
   serviceAccount: "PetragramRCENodejs-6812688ab89d.json",
+  databaseURL: "https://petragramrcenodejs.firebaseio.com"
+});
+*/
+
+var firebase = require("firebase-admin");
+var serviceAccount = require("PetragramRCENodejs-6812688ab89d.json");
+
+firebase.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://petragramrcenodejs.firebaseio.com"
 });
 
