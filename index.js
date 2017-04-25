@@ -139,7 +139,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var registrados = require('request');
 
 	registrados.get({
-    	url: url,
+    	url: URL_usuarios,
     	json: true,
     	headers: {'User-Agent': 'request'}
   	}, (err, res, data) => {
