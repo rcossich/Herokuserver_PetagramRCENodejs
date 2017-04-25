@@ -120,8 +120,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
     var id_dispositivo = null;
     console.log("previo a tratar de recuperar id de dispositivo");
     //arbol.orderByChild('id_usuario_instagram').on(
-    arbol.child().once(    	
-    	"value",function(snapshot){
+    arbol.once(    	
+    	"child_added",function(snapshot){
     		console.log("Adentro");
     		console.log("Entrando a"+snapshot.key);
     	});
