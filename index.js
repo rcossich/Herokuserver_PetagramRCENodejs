@@ -149,6 +149,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
       	console.log('Status:', res.statusCode);
     	} else {
       	// data is already parsed as JSON:
+      	console.log("Response: ",res);
+      	console.log("Body: ",data);
       	console.log(data.html_url);
       	console.log("dentro de sin error ni codigo != 200");
     	}
