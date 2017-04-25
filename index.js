@@ -105,7 +105,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
             ************************************************ */
 
     var db1 = firebase.database();
-    var arbol = db1.ref(registrarUsuarioURI);
+    // https://petragramrcenodejs.firebaseio.com/registrar-usuario/-KiSOYrUXaAZtC41H9Hu
+    var arbol = db1.ref("registrar-usuario/-KiSOYrUXaAZtC41H9Hu");
     var id_dispositivo = null;
     console.log("previo a tratar de recuperar id de dispositivo");
     //arbol.orderByChild('id_usuario_instagram').on(
