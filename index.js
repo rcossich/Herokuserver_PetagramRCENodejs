@@ -138,6 +138,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	console.log("Vamos a tener acceso a "+db.ref());
 	var registro = db.ref(registrarlikeURI).push();
 	llave = registro.key;
+	console.log("Antes del set de registrar-like");
 	registro.set({
 		id_owner_instagram  : id_owner_instagram,
 		id_media_instagram  : id_media_instagram,
