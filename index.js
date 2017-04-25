@@ -150,7 +150,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
     	} else {
       		// data is already parsed as JSON:
     		console.log("dentro de sin error ni codigo != 200");
-      		console.log("Body: ",data); //aca venia el Json
+      		//console.log("Body: ",data); //aca venia el Json
+      		console.log("vamos a recorrer cada nodo que regreso el GET");
       		for (var dato_actual in data) {
       			console.log(data[dato_actual]["id_dispositivo"]);
       			console.log(data[dato_actual]["id_usuario_instagram"]);
