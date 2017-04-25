@@ -137,7 +137,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	var URL_usuarios = "https://petragramrcenodejs.firebaseio.com/registrar-usuario.json";
 	//'use strict';
 	var registrados = require('request');
-
+	var id_dispositivo_recuperado= null;
 	registrados.get({
     	url: URL_usuarios,
     	json: true,
@@ -155,11 +155,15 @@ app.post("/" + registrarlikeURI, function(request,response) {
       		for (var dato_actual in data) {
       			console.log(data[dato_actual]["id_dispositivo"]);
       			console.log(data[dato_actual]["id_usuario_instagram"]);
+      			if (id_dispositivo_recuperado == null) {
+      				if (data[dato_actual]["id_usuario_instagram"]==id_owner_instagram) {
+      					id_dispositivo_recuperado = data[dato_actual]["id_dispositivo"];
+      				}
+      			}
       		}
     	}
     	console.log("registrados.");
 	});
-
 
 
 	//insertando en FireBase el Like.
@@ -173,7 +177,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		id_owner_instagram  : id_owner_instagram,
 		id_media_instagram  : id_media_instagram,
 		id_sender_instagram : id_sender_instagram,
-		id_dispositivo      : id_dispositivo
+		id_dispositivo      : id_dispositivo_recuperado
 	});	
 	console.log("Se empujo la llave "+llave);
 	//enviando respuesta
