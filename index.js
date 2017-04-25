@@ -113,7 +113,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 			/registrar-usuario
 
             ************************************************ */
-    
+    /*
     var raiz = firebase.database().ref();
     console.log("Raiz de la base de datos: "+raiz);
     var arbol_usuarios = raiz.child(registrarUsuarioURI);
@@ -131,7 +131,19 @@ app.post("/" + registrarlikeURI, function(request,response) {
     		console.log("Entrando a"+snapshot.key);
     	});
     console.log("posterior a tratar de recuperar id de dispositivo");
-	
+	*/
+
+	//tratando de obtener registrar-usuario con un GET finalizado en .json desde aca.
+	var URL_usuarios = "https://petragramrcenodejs.firebaseio.com/registrar-usuario.json";
+	const request = require('request');
+    request(URL_usuarios, (error, response, body)=> {
+    if (!error && response.statusCode === 200) {
+    	const fbResponse = JSON.parse(body)
+    	console.log("Got a response: ", fbResponse.picture)
+  	} else {
+    	console.log("Got an error: ", error, ", status code: ", response.statusCode)
+  	}
+	});
 
 
 
