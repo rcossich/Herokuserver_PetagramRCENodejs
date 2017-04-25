@@ -129,7 +129,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	*/
 
 	var ref = firebase.app().database().ref();
-	ref.once(‘value’).then(function (snap) {
+	ref.once("value").then(function (snap) {
 		console.log(‘snap.val()’, snap.val());
 	});
 
