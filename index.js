@@ -181,7 +181,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 );
 
 function enviarNotificaion(tokenDestinatario, mensaje) {
-	var serverKey = 'AIzaSyD8sRahKnRK0TIvJgiPIekz5-F32v_1c8E';
+	var serverKey = 'AAAABX3oZWQ:APA91bFwTmwRQJmDVPlRvra3IBrfcbtWZGW1EbvLpSYHSsy1rQXkeU0bGCk7tlDBJoiE_Yg5nBjo2PTtNApQ899joOu8Kz-PioDpZB_9gp_aL8m0kUtl1D72ZThzu1S_vB94qwElnu0k';
 	var fcm = new FCM(serverKey);
 	var message = {
 	    to: tokenDestinatario, // required
