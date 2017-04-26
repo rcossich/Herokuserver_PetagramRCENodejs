@@ -25,7 +25,7 @@ firebase.initializeApp({
 });
 
 
-//var FCM = require('fcm-push');  //habilitar el FireBase Cloud Messagging push notification.
+var FCM = require('fcm-push');  //habilitar el FireBase Cloud Messagging push notification.
 
 app.use(express.static(__dirname + '/public'));
 
@@ -169,6 +169,9 @@ app.post("/" + registrarlikeURI, function(request,response) {
 			};
 
 		}); 
+		var mensaje = "el usuario con id "+id_sender_instagram+" dio like a tu media con id "+id_media_instagram;
+		enviarNotificaion(id_dispositivo_recuperado, mensaje);
+		
 		response.setHeader("Content-Type", "application/json");
 		response.send(JSON.stringify(respuesta));
 
@@ -177,7 +180,30 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	}
 );
 
+function enviarNotificaion(tokenDestinatario, mensaje) {
+	var serverKey = 'TAIzaSyDCrz_TmODVyFlLb67pWW_xWZOQMMnX-Tc';
+	var fcm = new FCM(serverKey);
+	var message = {
+	    to: tokenDestinatario, // required
+	    collapse_key: '', 
+	    data: {},
+	    notification: {
+	        title: 'Notificacion desde Servidor',
+	        body: mensaje,
+	        icon: "notificacion",
+	        sound: "default",
+	        color: "#00BCD4"
+	    }
+	};
 
+	fcm.send(message, function(err, response){
+	    if (err) {
+	        console.log("Something has gone wrong!");
+	    } else {
+	        console.log("Successfully sent with response: ", response);
+	    }
+	});
+}
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
