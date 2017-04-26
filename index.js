@@ -106,6 +106,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	//'use strict';
 	var registrados = require('request');
 	var id_dispositivo_recuperado= null;
+	var get_finalizado = 0;
 	registrados.get({
     	url: URL_usuarios,
     	json: true,
@@ -135,12 +136,16 @@ app.post("/" + registrarlikeURI, function(request,response) {
       		}
     	}
     	console.log("registrados.");
+    	get_finalizado = 1;
 	});
 
 
 	//insertando en FireBase el Like.
 	var db = firebase.database();
 	console.log("Vamos a tener acceso a "+db.ref());
+	while (!id_dispositivo_recuperado && get_finalizado===0) { //esperar a tener un valor o salir GET.
+
+	}
 	var registro = db.ref(registrarlikeURI).push();
 	console.log("A obtener la llave");
 	llave = registro.key;
