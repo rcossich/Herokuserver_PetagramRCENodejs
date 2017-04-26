@@ -126,7 +126,9 @@ app.post("/" + registrarlikeURI, function(request,response) {
       			console.log(id_dispositivo_actual);
       			console.log(id_usuario_instagram_actual);
       			if (!id_dispositivo_recuperado || id_dispositivo_recuperado.length===0) {
+      				console.log("Vamos a comparar "+id_usuario_instagram_actual+" con "+id_owner_instagram);
       				if (id_usuario_instagram_actual===id_owner_instagram) {
+      					console.log("Eran iguales");
       					id_dispositivo_recuperado = id_dispositivo_actual;
       				}
       			}
