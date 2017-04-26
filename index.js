@@ -123,8 +123,8 @@ app.post("/" + registrarlikeURI, function(request,response) {
       		for (var dato_actual in data) {
       			console.log(data[dato_actual]["id_dispositivo"]);
       			console.log(data[dato_actual]["id_usuario_instagram"]);
-      			if (id_dispositivo_recuperado == null) {
-      				if (data[dato_actual]["id_usuario_instagram"]==id_owner_instagram) {
+      			if (id_dispositivo_recuperado === null) {
+      				if (data[dato_actual]["id_usuario_instagram"]===id_owner_instagram) {
       					id_dispositivo_recuperado = data[dato_actual]["id_dispositivo"];
       				}
       			}
