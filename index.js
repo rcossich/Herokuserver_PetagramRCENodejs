@@ -121,11 +121,13 @@ app.post("/" + registrarlikeURI, function(request,response) {
       		//console.log("Body: ",data); //aca venia el Json
       		console.log("vamos a recorrer cada nodo que regreso el GET");
       		for (var dato_actual in data) {
-      			console.log(data[dato_actual]["id_dispositivo"]);
-      			console.log(data[dato_actual]["id_usuario_instagram"]);
-      			if (id_dispositivo_recuperado === null) {
-      				if (data[dato_actual]["id_usuario_instagram"]===id_owner_instagram) {
-      					id_dispositivo_recuperado = data[dato_actual]["id_dispositivo"];
+      			var id_dispositivo_actual = data[dato_actual]["id_dispositivo"];
+      			var id_usuario_instagram_actual = data[dato_actual]["id_usuario_instagram"]
+      			console.log(id_dispositivo_actual);
+      			console.log(id_usuario_instagram_actual);
+      			if (!id_dispositivo_recuperado || id_dispositivo_recuperado.length===0) {
+      				if (id_usuario_instagram_actual===id_owner_instagram) {
+      					id_dispositivo_recuperado = id_dispositivo_actual;
       				}
       			}
       		}
