@@ -84,54 +84,22 @@ function generarRespuestaAToken(db, idAutoGenerado) {
 // el id media es el identificador de isntagram para la media a la que se le dio like en el TimeLine.
 // el id sender es el id de instagram definido como principal en la aplicacion.
 // este id owner debe estar registrado en registrar-usuario para poder enviar notificacion.
-// La aplicacion Android en el POST debe enviar el valor de id_dispositivo que corresponde a
-//id_owner_instagram, si viene nulo no envia la notificacion.
+
 //https://whispering-cliffs-37590.herokuapp.com/registrar-like
-//id_owner_instagram, id_media_instagram,id_sender_instagram, id_dispositivo
+//id_owner_instagram, id_media_instagram,id_sender_instagram
 
-//IMPORTANTE: se queria verificar si en el nodeo de firebase registrar-usuario existia
-//un nodo donde id_usuario_instagram fuera giaul que id_owner_instagram para recuperar
-//el id_dispositivo al cual debemos enviar la notificacion.
-//nunca se logro hacer correr el codigo, por lo que se decidio que en la aplicacion de Android
-//se va a buscar dicho id_dispositivo con un GET directo al nodo registrar-usuario.json
-//eso explica que se agregue al POST el id_dispositivo (solamente se permite uno)
-//y con esto queda resuelto el envio de notificacions desde Heroku.
-
-
-
-
+//IMPORTANTE:
+// dentro de este codigo se hace una llamada a un GET de Firebase que regresa el nodo completo
+// de registrar-usuario. A traves de parser de JSON se revisa si existe un dispositivo registrado
+// para el id_owner_instagram.
+// en caso de existir se regresa este valor en la respuesta del POST en el campo id_dispositivo.
 var registrarlikeURI = "registrar-like";
 app.post("/" + registrarlikeURI, function(request,response) {
 	var id_owner_instagram  	= request.body.id_owner_instagram;
 	var id_media_instagram  	= request.body.id_media_instagram;
 	var id_sender_instagram 	= request.body.id_sender_instagram;
-	var id_dispositivo          = request.body.id_dispositivo;
 
-	/*      *************************************************
-			ACA VAMOS A PROBAR DE NUEVO OBTENER SI ESTA REGISTRADO
-			ALGUN DISPOSITIVO DEL id_owner_instagran en el nodo
-			/registrar-usuario
 
-            ************************************************ */
-    /*
-    var raiz = firebase.database().ref();
-    console.log("Raiz de la base de datos: "+raiz);
-    var arbol_usuarios = raiz.child(registrarUsuarioURI);
-    console.log("El nodo de:"+arbol_usuarios);
-    // https://petragramrcenodejs.firebaseio.com/registrar-usuario/-KiSOYrUXaAZtC41H9Hu
-    //var arbol = arbol_usuarios.ref();
-    //console.log("El nodo de:"+arbol);
-    //var id_dispositivo = null;
-    console.log("previo a tratar de recuperar id de dispositivo");
-    //arbol.orderByChild('id_usuario_instagram').on(
-    arbol_usuarios.orderByKey().on(    	
-    	"child_added",function(snapshot){
-    		//forEach(snapshot)
-    		console.log("Adentro");
-    		console.log("Entrando a"+snapshot.key);
-    	});
-    console.log("posterior a tratar de recuperar id de dispositivo");
-	*/
 
 	//tratando de obtener registrar-usuario con un GET finalizado en .json desde aca.
 	var URL_usuarios = "https://petragramrcenodejs.firebaseio.com/registrar-usuario.json";
@@ -176,8 +144,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 	registro.set({
 		id_owner_instagram  : id_owner_instagram,
 		id_media_instagram  : id_media_instagram,
-		id_sender_instagram : id_sender_instagram,
-		id_dispositivo      : id_dispositivo_recuperado
+		id_sender_instagram : id_sender_instagram
 	});	
 	console.log("Se empujo la llave "+llave);
 	//enviando respuesta
@@ -188,7 +155,7 @@ app.post("/" + registrarlikeURI, function(request,response) {
 		usuario = snapshot.val();
 		respuesta = {
 			id: llave,
-			id_dispositivo : id_dispositivo,
+			id_dispositivo : id_dispositivo_recuperado,
 			id_owner_instagram : usuario.id_owner_instagram,
 			id_media_instagram : usuario.id_media_instagram,
 			id_sender_instagram : id_sender_instagram
