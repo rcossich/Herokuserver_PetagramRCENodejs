@@ -137,42 +137,43 @@ app.post("/" + registrarlikeURI, function(request,response) {
     	}
     	console.log("registrados.");
     	get_finalizado = 1;
+    	//insertando en FireBase el Like.
+		var db = firebase.database();
+		console.log("Vamos a tener acceso a "+db.ref());
+		//while (!id_dispositivo_recuperado && get_finalizado===0) { //esperar a tener un valor o salir GET.
+
+		//}
+		console.log("Vengo con dispositivo"+id_dispositivo_recuperado+" Y get_finalizado"+get_finalizado);
+		var registro = db.ref(registrarlikeURI).push();
+		console.log("A obtener la llave");
+		llave = registro.key;
+		console.log("Antes del set de registrar-like");
+		registro.set({
+			id_owner_instagram  : id_owner_instagram,
+			id_media_instagram  : id_media_instagram,
+			id_sender_instagram : id_sender_instagram
+		});	
+		console.log("Se empujo la llave "+llave);
+		//enviando respuesta
+		var respuesta = {};
+		var usuario = "";
+		var ref1 = db.ref(registrarlikeURI);
+		ref1.on("child_added", function(snapshot, prevChildKey) {
+			usuario = snapshot.val();
+			respuesta = {
+				id: llave,
+				id_dispositivo : id_dispositivo_recuperado,
+				id_owner_instagram : usuario.id_owner_instagram,
+				id_media_instagram : usuario.id_media_instagram,
+				id_sender_instagram : id_sender_instagram
+			};
+
+		}); 
+		response.setHeader("Content-Type", "application/json");
+		response.send(JSON.stringify(respuesta));
+
 	});
 
-
-	//insertando en FireBase el Like.
-	var db = firebase.database();
-	console.log("Vamos a tener acceso a "+db.ref());
-	while (!id_dispositivo_recuperado && get_finalizado===0) { //esperar a tener un valor o salir GET.
-
-	}
-	var registro = db.ref(registrarlikeURI).push();
-	console.log("A obtener la llave");
-	llave = registro.key;
-	console.log("Antes del set de registrar-like");
-	registro.set({
-		id_owner_instagram  : id_owner_instagram,
-		id_media_instagram  : id_media_instagram,
-		id_sender_instagram : id_sender_instagram
-	});	
-	console.log("Se empujo la llave "+llave);
-	//enviando respuesta
-	var respuesta = {};
-	var usuario = "";
-	var ref1 = db.ref(registrarlikeURI);
-	ref1.on("child_added", function(snapshot, prevChildKey) {
-		usuario = snapshot.val();
-		respuesta = {
-			id: llave,
-			id_dispositivo : id_dispositivo_recuperado,
-			id_owner_instagram : usuario.id_owner_instagram,
-			id_media_instagram : usuario.id_media_instagram,
-			id_sender_instagram : id_sender_instagram
-		};
-
-	}); 
-	response.setHeader("Content-Type", "application/json");
-	response.send(JSON.stringify(respuesta));
 	}
 );
 
